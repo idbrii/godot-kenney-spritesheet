@@ -1,6 +1,6 @@
 # Kenney Spritesheet Importer
 
-Supports `Godot 4.1/4.2
+Supports Godot 4.1/4.2
 
 ## Usage
 
