@@ -58,9 +58,9 @@ func _import(source_file, save_path, options, platform_variants, gen_files):
     var atlas = read_kenney_sprite_sheet(options.spritesheet_xml_file)
     var folder = options.destination_folder
     create_folder(folder)
-    
+
     var full_image = ImageTexture.create_from_image(Image.load_from_file(source_file))
-    
+
     if not full_image:
         printerr("Failed to load image file: " + source_file)
         return ERR_FILE_NOT_FOUND
@@ -87,7 +87,7 @@ func create_atlas_texture(folder, full_image, sprite, gen_files):
         texture = ResourceLoader.load(name, "AtlasTexture")
     else:
         texture = AtlasTexture.new()
-    
+
     texture.atlas = full_image
     texture.region = Rect2(sprite.x, sprite.y, sprite.width, sprite.height)
     gen_files.push_back(name)
