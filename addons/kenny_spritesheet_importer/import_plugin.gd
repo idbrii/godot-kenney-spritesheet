@@ -64,7 +64,15 @@ func _import(source_file, save_path, options, platform_variants, gen_files):
     if not full_image:
         printerr("Failed to load image file: " + source_file)
         return ERR_FILE_NOT_FOUND
-    
+
+    # Save the ImageTexture as a resource so it's referenced in each
+    # AtlasTexture instead of embedded. That also ensures we maintain the
+    # efficiency of spritesheets: a single texture that reduces draw calls.
+    var image_res_path = source_file.get_slice(source_file.get_extension(), 0) + "tres"
+    ResourceSaver.save(full_image, image_res_path)
+    # Load to get a handle to the shared resource instead of the raw texture.
+    full_image = load(image_res_path)
+
     create_atlas_textures(folder, full_image, atlas, gen_files)
     return ResourceSaver.save(Resource.new(), "%s.%s" % [save_path, _get_save_extension()])
 
