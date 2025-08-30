@@ -74,7 +74,9 @@ func _import(source_file, save_path, options, platform_variants, gen_files):
     full_image = load(image_res_path)
 
     create_atlas_textures(folder, full_image, atlas, gen_files)
-    return ResourceSaver.save(Resource.new(), "%s.%s" % [save_path, _get_save_extension()])
+    var result = ResourceSaver.save(Resource.new(), "%s.%s" % [save_path, _get_save_extension()])
+    EditorInterface.get_resource_filesystem().scan()
+    return result
 
 func create_folder(folder):
     var dir := DirAccess.open("res://")
