@@ -1,6 +1,6 @@
-
 @tool
 extends EditorImportPlugin
+class_name KenneyImportPlugin
 
 enum Presets { DEFAULT }
 
@@ -29,8 +29,7 @@ func _get_preset_count():
     return Presets.size()
 
 func _get_preset_name(preset_index):
-    match preset_index:
-        Presets.DEFAULT: return "Default"
+    return "Default"
 
 func _get_import_options(path, preset_index):
     var options := [
