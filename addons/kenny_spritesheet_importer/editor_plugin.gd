@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-var import_plugin = null
+var import_plugin : KenneyImportPlugin
 
 func _enter_tree():
 	import_plugin = preload("import_plugin.gd").new()
